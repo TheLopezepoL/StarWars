@@ -5,6 +5,7 @@
 # Version 0.1 - Pyhton 3.7.3
 ########################################
 # Importación de Librerias
+import requests
 
 
 # Definición de Funciones
