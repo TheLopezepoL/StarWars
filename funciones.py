@@ -10,7 +10,20 @@ import json
 
 
 # Definición de Funciones
-def verificarRed:
+def verificarRed():
+    urls = ['https://www.google.co.cr/', 'https://www.tec.ac.cr/', 'https://www.python.org/']
+    resul = []
+    for url in urls:
+        try:
+            requests.get(url)
+            resul.append(1)
+        except:
+            resul.append(0)
+    if resul.count(1) > 1:
+        return True
+    else:
+        return False
+
 
 
 
