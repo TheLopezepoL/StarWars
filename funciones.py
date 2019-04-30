@@ -19,10 +19,9 @@ def verificarRed():
             resul.append(1)
         except:
             resul.append(0)
-    if resul.count(1) > 1:
+    if resul.count(0) < 2:
         return True
-    else:
-        return False
+    return False
 
 
 
