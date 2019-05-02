@@ -12,14 +12,14 @@ import json
 # Definición de Funciones
 def verificarRed():
     urls = ['https://www.google.co.cr/', 'https://www.tec.ac.cr/', 'https://www.python.org/']
-    resul = []
+    resul = 0
     for url in urls:
         try:
             requests.get(url)
-            resul.append(1)
+            resul += 1
         except:
-            resul.append(0)
-    if resul.count(0) < 2:
+            resul -= 1
+    if resul > 1:
         return True
     return False
 
