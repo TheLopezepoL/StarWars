@@ -25,15 +25,14 @@ def verificarRed():
 
 
 def sacarFrases(pcan):
+    url = 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote'
     frases = []
     while pcan > 0:
-        url = 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote'
         respuesta = requests.get(url)
         if respuesta.status_code == 200:
-            contenido = json.loads(respuesta.content.decode('utf-8'))
+            frases.append(json.loads(respuesta.content.decode('utf-8')))
         else:
-            contenido = 'Error de conexion: intente de nuevo'
-        frases.append(contenido)
+            frases.append('Error de conexion; la API no respondio')
         pcan -= 1
     return frases
 
