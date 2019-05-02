@@ -19,11 +19,9 @@ def verificarRed():
             resul += 1
         except:
             resul -= 1
-    if resul > 1:
+    if resul > 0:
         return True
     return False
-
-
 
 
 def sacarFrases(pcan):
