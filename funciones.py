@@ -2,11 +2,12 @@
 # Integrantes: Sebastián López Herrera y Daniel Sequeira Retana
 # Fecha creación: 26/04/2019 12:00
 # Ultima actualización: 26/04/2019 19:20
-# Version 0.1 - Pyhton 3.7.3
+# Version 0.1 - Python 3.7.3
 ########################################
 # Importación de Librerias
 import requests
 import json
+import re
 
 
 # Definición de Funciones
@@ -35,6 +36,20 @@ def sacarFrases(pcan):
             frases.append('Error de conexion; la API no respondio')
         pcan -= 1
     return frases
+
+
+def sacarNombre(pfrases):
+    nombres = []
+    for frase in pfrases:
+        texto = frase['starWarsQuote']
+        if re.search(' — ', texto):
+            texto = texto.split(' — ')
+        else:
+            texto = texto.split(' ? ')
+        nom = texto[1]
+
+
+
 
 # Programa Principal
 
