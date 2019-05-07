@@ -8,6 +8,7 @@
 import requests
 import json
 import re
+import ast
 
 
 # Definición de Funciones
@@ -35,18 +36,53 @@ def sacarFrases(pcan):
         else:
             frases.append('Error de conexion; la API no respondio')
         pcan -= 1
+    #frases = list(set(frases))
     return frases
 
 
 def sacarNombre(pfrases):
-    nombres = []
     for frase in pfrases:
         texto = frase['starWarsQuote']
         if re.search(' — ', texto):
             texto = texto.split(' — ')
+        elif re.search(' - ', texto):
+            texto = texto.split(' - ')
         else:
             texto = texto.split(' ? ')
-        nom = texto[1]
+        texto = auxSacarNombre(texto)
+        frase['nom'] = texto[1]
+    return pfrases
+
+
+def auxSacarNombre(ptexto):
+    f = len(ptexto) - 1
+    for l in range(1, f):
+        ptexto[0] = ptexto[0] + ' - ' + ptexto[l]
+    while f > 1:
+        ptexto.pop(1)
+        f -= 1
+    return ptexto
+
+
+def eliminarFRep(pfrases):
+    for n in range(len(pfrases)):
+        pfrases[n] = str(pfrases[n])
+    pfrases = list(set(pfrases))
+    for n in range(len(pfrases)):
+        pfrases[n] = ast.literal_eval(pfrases[n])
+    return pfrases
+
+
+def crearCdA(pfrases):
+    ncod = 0
+    for p in pfrases:
+        ncod += 1
+        nom = p['nom'].upper()
+        li = nom[0]
+        lf = nom[len(nom)-1]
+        cod = li + str(ncod).zfill(3) + '-' + lf
+        p['cod'] = cod
+    return pfrases
 
 
 # Programa Principal
