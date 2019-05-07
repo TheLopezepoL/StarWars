@@ -8,7 +8,10 @@
 import requests
 import json
 import re
+<<<<<<< HEAD
 import ast
+=======
+>>>>>>> 04f55477ca4f2aa7969181b099a79490fee45fee
 
 
 # Definición de Funciones
@@ -41,10 +44,15 @@ def sacarFrases(pcan):
 
 
 def sacarNombre(pfrases):
+<<<<<<< HEAD
+=======
+    nombres = []
+>>>>>>> 04f55477ca4f2aa7969181b099a79490fee45fee
     for frase in pfrases:
         texto = frase['starWarsQuote']
         if re.search(' — ', texto):
             texto = texto.split(' — ')
+<<<<<<< HEAD
         elif re.search(' - ', texto):
             texto = texto.split(' - ')
         else:
@@ -83,6 +91,13 @@ def crearCdA(pfrases):
         cod = li + str(ncod).zfill(3) + '-' + lf
         p['cod'] = cod
     return pfrases
+=======
+        else:
+            texto = texto.split(' ? ')
+        nom = texto[1]
+
+
+>>>>>>> 04f55477ca4f2aa7969181b099a79490fee45fee
 
 
 # Programa Principal
