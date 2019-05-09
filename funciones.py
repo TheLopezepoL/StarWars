@@ -74,7 +74,8 @@ def eliminarFRep(pfrases):
 
 
 def crearCdA(pfrases):
-    ncod = 0
+    ncod = len(pfrases)
+    pfrases.reverse()
     for p in pfrases:
         ncod += 1
         nom = p['nom'].upper()
@@ -82,10 +83,21 @@ def crearCdA(pfrases):
         lf = nom[len(nom)-1]
         cod = li + str(ncod).zfill(3) + '-' + lf
         p['cod'] = cod
+        ncod -= 1
+    pfrases.reverse()
     return pfrases
 
 
 # Programa Principal
+if verificarRed():
+    frases = sacarFrases(5)
+    frases = eliminarFRep(frases)
+    frases = sacarNombre(frases)
+    frases = crearCdA(frases)
+    print(frases)
+else:
+    print('Nel we')
+
 
 
 # - FIN - #
