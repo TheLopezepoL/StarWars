@@ -9,7 +9,10 @@ import requests
 import json
 import re
 import ast
-import tkinter
+from tkinter import *
+from tkinter import Text
+from tkinter import Tk
+from tkinter import ttk
 
 
 # Definición de Funciones
@@ -51,6 +54,9 @@ def sacarNombre(pfrases):
         else:
             texto = texto.split(' ? ')
         texto = auxSacarNombre(texto)
+        if re.search(" \(", texto[1]):
+            texto[1] = texto[1].split(' (')
+            texto[1] = texto[1][0]
         frase['nom'] = texto[1]
     return pfrases
 
@@ -89,11 +95,6 @@ def crearCdA(pfrases):
 
 
 # Programa Principal
-#
-from tkinter import *
-from tkinter import Text
-from tkinter import Tk
-from tkinter import ttk
 # # # raiz
 raiz = Tk()
 style = ttk.Style()
@@ -152,7 +153,7 @@ raiz.mainloop()
 
 
 if verificarRed():
-    frases = sacarFrases(5)  #El tiempo de respuesta puede fallar
+    frases = sacarFrases(55)  #El tiempo de respuesta puede fallar
     frases = eliminarFRep(frases)
     frases = sacarNombre(frases)
     frases = crearCdA(frases)
