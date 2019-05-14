@@ -33,6 +33,7 @@ def verificarRed():
 
 
 def sacarFrases(pcan):
+    global pfrases
     url = 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote'
     while pcan > 0:
         respuesta = requests.get(url)
@@ -48,7 +49,8 @@ def sacarFrases(pcan):
     return pfrases
 
 
-def sacarNombre(pfrases):
+def sacarNombre():
+    global pfrases
     for frase in pfrases:
         texto = frase['starWarsQuote']
         if re.search(' — ', texto):
@@ -64,6 +66,7 @@ def sacarNombre(pfrases):
         frase['nom'] = texto[1]
     return pfrases
 
+
 def auxSacarNombre(ptexto):
     f = len(ptexto) - 1
     for l in range(1, f):
@@ -74,7 +77,8 @@ def auxSacarNombre(ptexto):
     return ptexto
 
 
-def eliminarFRep(pfrases):
+def eliminarFRep():
+    global pfrases
     cont = 0
     while cont < len(pfrases)-1:
         f = pfrases[cont]['id']
@@ -88,7 +92,8 @@ def eliminarFRep(pfrases):
     return pfrases
 
 
-def crearCdA(pfrases):
+def crearCdA():
+    global pfrases
     ncod = len(pfrases)
     pfrases.reverse()
     for p in pfrases:
@@ -103,13 +108,14 @@ def crearCdA(pfrases):
 
 
 def crearMatriz(pcan):
+    global pfrases
     matriz = []
     nom = ''
     cont = 0
     frases = sacarFrases(pcan)
-    frases = eliminarFRep(frases)
-    frases = sacarNombre(frases)
-    frases = crearCdA(frases)
+    frases = eliminarFRep()
+    frases = sacarNombre()
+    frases = crearCdA()
     while len(frases) != 0:
         f = frases[cont]
         CdA = f['cod']
@@ -178,6 +184,8 @@ def auxllamarFBus(pnum):
 
 
 def llamarFBus():
+    global pfrases
+    print(pfrases)
     if verificarRed():
         num = pcan.get()
         tup = auxllamarFBus(num)
