@@ -1,7 +1,7 @@
 ########################################
 # Integrantes: Sebastián López Herrera y Daniel Sequeira Retana
 # Fecha creación: 26/04/2019 12:00
-# Ultima actualización: 26/04/2019 19:20
+# Ultima actualización: 14/05/2019 23:00
 # Version 0.1 - Python 3.7.3
 ########################################
 # Importación de Librerias
@@ -14,6 +14,7 @@ from tkinter import Text
 from tkinter import Tk
 from tkinter import ttk
 from tkinter import messagebox
+import webbrowser as wb
 # Variable Global
 pfrases = []
 
