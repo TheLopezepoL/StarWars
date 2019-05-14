@@ -206,6 +206,10 @@ def llamarFBus():
     return ''
 
 
+def abrirPDF():
+    wb.open_new(r'C:\Users\thelo\Desktop\Frases\Manual tkinter 8.5 (2013-06-24).pdf')
+
+
 # Programa Principal
 # # # raiz
 raiz = Tk()
@@ -228,7 +232,7 @@ texbus = Entry(fondo, bg='yellow', textvariable=pcan)
 texbus.place(x=500, y=100)
 texbus.config(width='5', font=('Fixedsys', 23), bd=10, relief='ridge')
 # # # boton buscar
-botbus = Button(fondo, text='Buscar', bg='yellow', fg='Black', font="Fixedsys", command=lambda: llamarFBus())
+botbus = Button(fondo, text='Buscar', bg='yellow', fg='Black', font="Fixedsys", command=llamarFBus)
 botbus.place(x=610, y=98)
 botbus.config(width="15", height="2", bd=10, relief='ridge', cursor='hand2')
 # # # boton enviar xml
@@ -254,10 +258,9 @@ style.layout("mystyle.Treeview", [('mystyle.Treeview.treearea', {'sticky': 'nswe
 tviewfra = ttk.Treeview(flbfra, style="mystyle.Treeview", selectmode='extended', columns='A')
 tviewfra.grid(row=0, column=0)
 tviewfra.pack(expand=True, fill='both')
-tviewfra.column("#0", minwidth=100, width=200, stretch=True)
-tviewfra.config(height=17)
-#
-print(style.element_options("Vertical.TScrollbar.thumb"))
+tviewfra.column("#0", minwidth=0, width=400, stretch=False)
+tviewfra.column('A', minwidth=0, width=0, stretch=False)
+tviewfra.config(height=16)
 # configure the style
 style.configure("Vertical.TScrollbar", gripcount=0,
                 background="yellow", darkcolor="gold3", lightcolor="yellow2",
@@ -268,7 +271,7 @@ sbarfra.grid(row=0, column=1, sticky='nsew')
 tviewfra.config(yscrollcommand=sbarfra.set)
 #
 # # # boton manual de usuario
-mdu = Button(fondo, text="-> Manual de Usuario <-", bg='black', fg='White', font='Fixedsys')
+mdu = Button(fondo, text="-> Manual de Usuario <-", bg='black', fg='White', font='Fixedsys', command=abrirPDF)
 mdu.pack(side="bottom", fill='x')
 mdu.config(cursor='hand2', bd=1, relief='flat')
 ###
