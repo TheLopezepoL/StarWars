@@ -7,14 +7,7 @@
 # Importación de Librerias
 import requests
 import json
-import re
-import ast
 from tkinter import *
-from tkinter import Text
-from tkinter import Tk
-from tkinter import ttk
-from tkinter import messagebox
-import webbrowser as wb
 # Variable Global
 pfrases = []
 
@@ -161,7 +154,7 @@ def sacarMayor(pdict, pmatriz):
             return 'Más Citado: ' + nom
     return 'Más Citado: ' + nom
 
-
+"""
 def imprimirTview(pmatriz):
     contl = 0
     contp = 0
@@ -173,7 +166,7 @@ def imprimirTview(pmatriz):
             contp += 1
         contl += 1
     return ''
-
+"""
 
 
 def auxllamarFBus(pnum):
@@ -183,7 +176,7 @@ def auxllamarFBus(pnum):
     except ValueError:
         return False, pnum
 
-
+"""
 def llamarFBus():
     global pfrases
     print(pfrases)
@@ -204,75 +197,8 @@ def llamarFBus():
     else:
         messagebox.showwarning('Sin Conexion', 'No hay conexion a Internet, revise e intente de nuevo')
     return ''
+"""
 
 
-# Programa Principal
-# # # raiz
-raiz = Tk()
-style = ttk.Style()
-style.theme_use('clam')
-raiz.title("Frases de Star Wars")
-raiz.config(bg="black")
-raiz.resizable(0, 0)
-raiz.iconbitmap('logo.ico')
-raiz.geometry("800x450")
-pcan = StringVar()
-prfrases = StringVar()
-pdict = StringVar()
-# fondo
-imagen = PhotoImage(file='fondo.png')
-fondo = Label(raiz, image=imagen).place(x=-11, y=-8)
-#
-# # # texto buscar
-texbus = Entry(fondo, bg='yellow', textvariable=pcan)
-texbus.place(x=500, y=100)
-texbus.config(width='5', font=('Fixedsys', 23), bd=10, relief='ridge')
-# # # boton buscar
-botbus = Button(fondo, text='Buscar', bg='yellow', fg='Black', font="Fixedsys", command=lambda: llamarFBus())
-botbus.place(x=610, y=98)
-botbus.config(width="15", height="2", bd=10, relief='ridge', cursor='hand2')
-# # # boton enviar xml
-botenv = Button(fondo, text='Enviar XML', bg='yellow', fg='Black', font='Fixedsys')
-botenv.place(x=497, y=188)
-botenv.config(width='29', height='2', bd=10, relief='ridge', cursor="hand2")
-###
-texdic = Entry(fondo, bg='black', fg="Yellow", bd=1, relief='flat', textvariable=pdict)
-texdic.place(x=497, y=276)
-texdic.config(width='31', font=('Fixedsys', 10))
-# # # frame frases
-ffra = Frame(fondo, width=415, height=335, bg='black')
-ffra.place(x=50, y=40)
-# # # frame list box
-flbfra = Frame(ffra, width=400, height=335, bg='black')
-flbfra.grid(row=0, column=0)
-# # #
-style = ttk.Style()
-style.configure("mystyle.Treeview", highlightthickness=0, bd=0, font=('Fixedsys', 12), fg='Yellow')
-style.configure("mystyle.Treeview.Heading", font=('Fixedsys', 12,'bold'), fg='Yellow')
-style.layout("mystyle.Treeview", [('mystyle.Treeview.treearea', {'sticky': 'nswe'})])
-# # # texto frases
-tviewfra = ttk.Treeview(flbfra, style="mystyle.Treeview", selectmode='extended', columns='A')
-tviewfra.grid(row=0, column=0)
-tviewfra.pack(expand=True, fill='both')
-tviewfra.column("#0", minwidth=100, width=200, stretch=True)
-tviewfra.config(height=17)
-#
-print(style.element_options("Vertical.TScrollbar.thumb"))
-# configure the style
-style.configure("Vertical.TScrollbar", gripcount=0,
-                background="yellow", darkcolor="gold3", lightcolor="yellow2",
-                troughcolor="black", bordercolor="black", arrowcolor="black")
-#
-sbarfra = ttk.Scrollbar(ffra, command=tviewfra.yview, orient="vertical")
-sbarfra.grid(row=0, column=1, sticky='nsew')
-tviewfra.config(yscrollcommand=sbarfra.set)
-#
-# # # boton manual de usuario
-mdu = Button(fondo, text="-> Manual de Usuario <-", bg='black', fg='White', font='Fixedsys')
-mdu.pack(side="bottom", fill='x')
-mdu.config(cursor='hand2', bd=1, relief='flat')
-###
-raiz.mainloop()
-###
 # - FIN - #
 
