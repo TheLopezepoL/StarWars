@@ -7,10 +7,10 @@
 # Importación de Librerias
 import requests
 import json
-import re
-import ast
+# import re
+# import ast
 from tkinter import *
-from tkinter import Text
+# from tkinter import Text
 from tkinter import Tk
 from tkinter import ttk
 from tkinter import messagebox
@@ -40,15 +40,14 @@ def sacarFrases(pcan, pfrases):
             try:
                 pfrases.append(json.loads(respuesta.content.decode('utf-8')))
             except:
-                pfrases.append('Error de conexion; la API no respondio')
+                pfrases.append({'id': 0, 'starWarsQuote': 'Error de conexion; la API no respondio - ERROR', 'faction': 0})
         else:
-            pfrases.append('Error de conexion; la API no respondio')
+            pfrases.append({'id': 0, 'starWarsQuote': 'Error de conexion; la API no respondio - ERROR', 'faction': 0})
         pcan -= 1
     return pfrases
 
 
 def sacarNombre(pfrases):
-    nombres = []
     for frase in pfrases:
         texto = frase['starWarsQuote']
         if re.search(' — ', texto):
@@ -64,7 +63,6 @@ def sacarNombre(pfrases):
         frase['nom'] = texto[1]
     return pfrases
 
-
 def auxSacarNombre(ptexto):
     f = len(ptexto) - 1
     for l in range(1, f):
@@ -76,11 +74,17 @@ def auxSacarNombre(ptexto):
 
 
 def eliminarFRep(pfrases):
-    frases = []
-    for p in pfrases:
-        if p not in frases:
-            frases.append(p)
-    return frases
+    cont = 0
+    while cont < len(pfrases)-1:
+        f = pfrases[cont]['id']
+        cont2 = len(pfrases) - 1
+        while cont2 > cont:
+            c = pfrases[cont2]['id']
+            if f == c:
+                pfrases.pop(cont2)
+            cont2 -= 1
+        cont += 1
+    return pfrases
 
 
 def crearCdA(pfrases):
@@ -177,17 +181,19 @@ def llamarFBus(pfrases):
         num = pcan.get()
         tup = auxllamarFBus(num)
         if tup[0]:
-            matriz = crearMatriz(tup[1], pfrases)
-            dicc = crearDict(matriz)
-            texto = sacarMayor(dicc, matriz)
-            pdict.set(texto)
-            imprimirTview(matriz)
+            if tup[1] >= 0:
+                matriz = crearMatriz(tup[1], pfrases)
+                dicc = crearDict(matriz)
+                texto = sacarMayor(dicc, matriz)
+                pdict.set(texto)
+                imprimirTview(matriz)
+            else:
+                messagebox.showwarning('Numero Negativo', 'Porfavor solo digite numeros positivos (Mayor o Igual a 0)')
         else:
-            messagebox.showerror('Numero Invalido', 'El dato insertado no es solo numerico, porfavor solo introduzca'
-                                                    ' numeros')
+            messagebox.showerror('Numero Invalido', 'El valor digitado no es numerico, porfavor digite solo numeros')
     else:
         messagebox.showwarning('Sin Conexion', 'No hay conexion a Internet, revise e intente de nuevo')
-    return ''
+    return pfrases
 
 
 # Programa Principal
@@ -229,10 +235,17 @@ ffra.place(x=50, y=40)
 # # # frame list box
 flbfra = Frame(ffra, width=400, height=335, bg='black')
 flbfra.grid(row=0, column=0)
+# # #
+style = ttk.Style()
+style.configure("mystyle.Treeview", highlightthickness=0, bd=0, font=('Fixedsys', 12), fg='Yellow')
+style.configure("mystyle.Treeview.Heading", font=('Fixedsys', 12,'bold'), fg='Yellow')
+style.layout("mystyle.Treeview", [('mystyle.Treeview.treearea', {'sticky': 'nswe'})])
 # # # texto frases
-tviewfra = ttk.Treeview(flbfra)  # , width=50, height=23, bg='Black', fg='yellow', font='Fixedsys')
-tviewfra.grid(row=0, column=0,)
-tviewfra.config(height=17)  # bd=1, relief='flat', width=50, bg='Black', fg='yellow', font='Fixedsys'
+tviewfra = ttk.Treeview(flbfra, style="mystyle.Treeview", selectmode='extended', columns='A')
+tviewfra.grid(row=0, column=0)
+tviewfra.pack(expand=True, fill='both')
+tviewfra.column("#0", minwidth=100, width=200, stretch=True)
+tviewfra.config(height=17)
 #
 print(style.element_options("Vertical.TScrollbar.thumb"))
 # configure the style
