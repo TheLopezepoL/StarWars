@@ -7,10 +7,10 @@
 # Importación de Librerias
 import requests
 import json
-# import re
-# import ast
+import re
+import ast
 from tkinter import *
-# from tkinter import Text
+from tkinter import Text
 from tkinter import Tk
 from tkinter import ttk
 from tkinter import messagebox
