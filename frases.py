@@ -26,7 +26,6 @@ def imprimirTview(pmatriz):
 
 def llamarFBus():
     global pfrases
-    print(pfrases)
     if verificarRed():
         num = pcan.get()
         tup = auxllamarFBus(num)
