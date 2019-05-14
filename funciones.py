@@ -32,7 +32,7 @@ def verificarRed():
     return False
 
 
-def sacarFrases(pcan, pfrases):
+def sacarFrases(pcan):
     url = 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote'
     while pcan > 0:
         respuesta = requests.get(url)
@@ -40,7 +40,8 @@ def sacarFrases(pcan, pfrases):
             try:
                 pfrases.append(json.loads(respuesta.content.decode('utf-8')))
             except:
-                pfrases.append({'id': 0, 'starWarsQuote': 'Error de conexion; la API no respondio - ERROR', 'faction': 0})
+                pfrases.append({'id': 0, 'starWarsQuote': 'Error de conexion; la API no respondio - ERROR', 'faction': 0
+                                })
         else:
             pfrases.append({'id': 0, 'starWarsQuote': 'Error de conexion; la API no respondio - ERROR', 'faction': 0})
         pcan -= 1
@@ -101,14 +102,14 @@ def crearCdA(pfrases):
     return pfrases
 
 
-def crearMatriz(pcan, pfrases):
+def crearMatriz(pcan):
     matriz = []
     nom = ''
     cont = 0
-    frases = sacarFrases(pcan, pfrases)
-    frases = eliminarFRep(pfrases)
-    frases = sacarNombre(pfrases)
-    frases = crearCdA(pfrases)
+    frases = sacarFrases(pcan)
+    frases = eliminarFRep(frases)
+    frases = sacarNombre(frases)
+    frases = crearCdA(frases)
     while len(frases) != 0:
         f = frases[cont]
         CdA = f['cod']
@@ -176,13 +177,13 @@ def auxllamarFBus(pnum):
         return False, pnum
 
 
-def llamarFBus(pfrases):
+def llamarFBus():
     if verificarRed():
         num = pcan.get()
         tup = auxllamarFBus(num)
         if tup[0]:
             if tup[1] >= 0:
-                matriz = crearMatriz(tup[1], pfrases)
+                matriz = crearMatriz(tup[1])
                 dicc = crearDict(matriz)
                 texto = sacarMayor(dicc, matriz)
                 pdict.set(texto)
@@ -193,7 +194,7 @@ def llamarFBus(pfrases):
             messagebox.showerror('Numero Invalido', 'El valor digitado no es numerico, porfavor digite solo numeros')
     else:
         messagebox.showwarning('Sin Conexion', 'No hay conexion a Internet, revise e intente de nuevo')
-    return pfrases
+    return ''
 
 
 # Programa Principal
@@ -218,7 +219,7 @@ texbus = Entry(fondo, bg='yellow', textvariable=pcan)
 texbus.place(x=500, y=100)
 texbus.config(width='5', font=('Fixedsys', 23), bd=10, relief='ridge')
 # # # boton buscar
-botbus = Button(fondo, text='Buscar', bg='yellow', fg='Black', font="Fixedsys", command=lambda: llamarFBus(pfrases))
+botbus = Button(fondo, text='Buscar', bg='yellow', fg='Black', font="Fixedsys", command=lambda: llamarFBus())
 botbus.place(x=610, y=98)
 botbus.config(width="15", height="2", bd=10, relief='ridge', cursor='hand2')
 # # # boton enviar xml
