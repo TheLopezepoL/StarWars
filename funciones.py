@@ -13,7 +13,9 @@ from tkinter import *
 from tkinter import Text
 from tkinter import Tk
 from tkinter import ttk
-
+from tkinter import messagebox
+# Variable Global
+pfrases = []
 
 # Definición de Funciones
 def verificarRed():
@@ -30,17 +32,19 @@ def verificarRed():
     return False
 
 
-def sacarFrases(pcan):
+def sacarFrases(pcan, pfrases):
     url = 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote'
-    frases = []
     while pcan > 0:
         respuesta = requests.get(url)
         if respuesta.status_code == 200:
-            frases.append(json.loads(respuesta.content.decode('utf-8')))
+            try:
+                pfrases.append(json.loads(respuesta.content.decode('utf-8')))
+            except:
+                pfrases.append('Error de conexion; la API no respondio')
         else:
-            frases.append('Error de conexion; la API no respondio')
+            pfrases.append('Error de conexion; la API no respondio')
         pcan -= 1
-    return frases
+    return pfrases
 
 
 def sacarNombre(pfrases):
@@ -72,12 +76,11 @@ def auxSacarNombre(ptexto):
 
 
 def eliminarFRep(pfrases):
-    for n in range(len(pfrases)):
-        pfrases[n] = str(pfrases[n])
-    pfrases = list(set(pfrases))
-    for n in range(len(pfrases)):
-        pfrases[n] = ast.literal_eval(pfrases[n])
-    return pfrases
+    frases = []
+    for p in pfrases:
+        if p not in frases:
+            frases.append(p)
+    return frases
 
 
 def crearCdA(pfrases):
@@ -94,6 +97,99 @@ def crearCdA(pfrases):
     return pfrases
 
 
+def crearMatriz(pcan, pfrases):
+    matriz = []
+    nom = ''
+    cont = 0
+    frases = sacarFrases(pcan, pfrases)
+    frases = eliminarFRep(pfrases)
+    frases = sacarNombre(pfrases)
+    frases = crearCdA(pfrases)
+    while len(frases) != 0:
+        f = frases[cont]
+        CdA = f['cod']
+        lis = []
+        lfra = []
+        lid = []
+        nom = f['nom']
+        cont2 = 0
+        while cont2 <= len(frases)-1:
+            i = frases[cont2]
+            if i['nom'] == nom:
+                lfra.append(i['starWarsQuote'])
+                lid.append(i['id'])
+                frases.pop(cont2)
+                cont2 -= 1
+            cont2 += 1
+        lis = [nom, lfra, lid, CdA]
+        matriz.append(lis)
+    return matriz
+
+
+def crearDict(pmatriz):
+    diccfrases = {}
+    for per in pmatriz:
+        cod = per[3]
+        diccfrases[cod] = len(per[2])
+    return diccfrases
+
+
+def sacarMayor(pdict, pmatriz):
+    nom = ''
+    gcod = ''
+    gnum = 0
+    for d in pdict:
+        val = pdict[d]
+        if val > gnum:
+            gcod = d
+            gnum = val
+    for m in pmatriz:
+        if m[3] == gcod:
+            nom = m[0]
+            return 'Más Citado: ' + nom
+    return 'Más Citado: ' + nom
+
+
+def imprimirTview(pmatriz):
+    contl = 0
+    contp = 0
+    tviewfra.delete(*tviewfra.get_children())
+    for l in pmatriz:
+        tviewfra.insert('', str(contl), 'C'+str(contl), text=l[3])
+        for p in l[1]:
+            tviewfra.insert('C'+str(contl), str(contp), 'F'+str(contp), text=p)
+            contp += 1
+        contl += 1
+    return ''
+
+
+
+def auxllamarFBus(pnum):
+    try:
+        pnum = int(pnum)
+        return True, pnum
+    except ValueError:
+        return False, pnum
+
+
+def llamarFBus(pfrases):
+    if verificarRed():
+        num = pcan.get()
+        tup = auxllamarFBus(num)
+        if tup[0]:
+            matriz = crearMatriz(tup[1], pfrases)
+            dicc = crearDict(matriz)
+            texto = sacarMayor(dicc, matriz)
+            pdict.set(texto)
+            imprimirTview(matriz)
+        else:
+            messagebox.showerror('Numero Invalido', 'El dato insertado no es solo numerico, porfavor solo introduzca'
+                                                    ' numeros')
+    else:
+        messagebox.showwarning('Sin Conexion', 'No hay conexion a Internet, revise e intente de nuevo')
+    return ''
+
+
 # Programa Principal
 # # # raiz
 raiz = Tk()
@@ -104,44 +200,49 @@ raiz.config(bg="black")
 raiz.resizable(0, 0)
 raiz.iconbitmap('logo.ico')
 raiz.geometry("800x450")
+pcan = StringVar()
+prfrases = StringVar()
+pdict = StringVar()
 # fondo
 imagen = PhotoImage(file='fondo.png')
 fondo = Label(raiz, image=imagen).place(x=-11, y=-8)
 #
 # # # texto buscar
-tbus = Entry(fondo, bg='yellow') #LightGoldenrod1
-tbus.place(x=500, y=100)
-tbus.config(width='5', font=('Fixedsys', 23), bd=10, relief='ridge')
+texbus = Entry(fondo, bg='yellow', textvariable=pcan)
+texbus.place(x=500, y=100)
+texbus.config(width='5', font=('Fixedsys', 23), bd=10, relief='ridge')
 # # # boton buscar
-fbus = Button(fondo, text='Buscar', bg='yellow', fg='Black', font="Fixedsys")
-fbus.place(x=610, y=98)
-fbus.config(width="15", height="2", bd=10, relief='ridge', cursor='hand2')
+botbus = Button(fondo, text='Buscar', bg='yellow', fg='Black', font="Fixedsys", command=lambda: llamarFBus(pfrases))
+botbus.place(x=610, y=98)
+botbus.config(width="15", height="2", bd=10, relief='ridge', cursor='hand2')
 # # # boton enviar xml
-fenv = Button(fondo, text='Enviar XML', bg='yellow', fg='Black', font='Fixedsys')
-fenv.place(x=497, y=188)
-fenv.config(width='29', height='2', bd=10, relief='ridge', cursor="hand2")
+botenv = Button(fondo, text='Enviar XML', bg='yellow', fg='Black', font='Fixedsys')
+botenv.place(x=497, y=188)
+botenv.config(width='29', height='2', bd=10, relief='ridge', cursor="hand2")
 ###
-tdic = Entry(fondo, bg='black', fg="Yellow", bd=1, relief='flat')
-tdic.place(x=497, y=276)
-tdic.config(width='31', font=('Fixedsys', 10))
+texdic = Entry(fondo, bg='black', fg="Yellow", bd=1, relief='flat', textvariable=pdict)
+texdic.place(x=497, y=276)
+texdic.config(width='31', font=('Fixedsys', 10))
 # # # frame frases
 ffra = Frame(fondo, width=415, height=335, bg='black')
-ffra.place(x=50, y=50)
+ffra.place(x=50, y=40)
+# # # frame list box
+flbfra = Frame(ffra, width=400, height=335, bg='black')
+flbfra.grid(row=0, column=0)
 # # # texto frases
-tfra = Text(ffra, width=50, height=23, bg='Black', fg='yellow', font='Fixedsys')
-tfra.grid(row=0, column=0,)
-tfra.config(bd=1, relief='flat')
+tviewfra = ttk.Treeview(flbfra)  # , width=50, height=23, bg='Black', fg='yellow', font='Fixedsys')
+tviewfra.grid(row=0, column=0,)
+tviewfra.config(height=17)  # bd=1, relief='flat', width=50, bg='Black', fg='yellow', font='Fixedsys'
 #
 print(style.element_options("Vertical.TScrollbar.thumb"))
-
 # configure the style
 style.configure("Vertical.TScrollbar", gripcount=0,
                 background="yellow", darkcolor="gold3", lightcolor="yellow2",
                 troughcolor="black", bordercolor="black", arrowcolor="black")
 #
-sfra = ttk.Scrollbar(ffra, command=tfra.yview, orient="vertical")
-sfra.grid(row=0, column=1, sticky='nsew')
-tfra.config(yscrollcommand=sfra.set)
+sbarfra = ttk.Scrollbar(ffra, command=tviewfra.yview, orient="vertical")
+sbarfra.grid(row=0, column=1, sticky='nsew')
+tviewfra.config(yscrollcommand=sbarfra.set)
 #
 # # # boton manual de usuario
 mdu = Button(fondo, text="-> Manual de Usuario <-", bg='black', fg='White', font='Fixedsys')
@@ -150,19 +251,5 @@ mdu.config(cursor='hand2', bd=1, relief='flat')
 ###
 raiz.mainloop()
 ###
-
-
-if verificarRed():
-    frases = sacarFrases(55)  #El tiempo de respuesta puede fallar
-    frases = eliminarFRep(frases)
-    frases = sacarNombre(frases)
-    frases = crearCdA(frases)
-    print(len(frases))
-    print(frases)
-else:
-    print('Nel we')
-
-
-
 # - FIN - #
 
