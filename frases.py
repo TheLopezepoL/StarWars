@@ -11,9 +11,8 @@ from tkinter import ttk
 from tkinter import messagebox
 import webbrowser as wb
 from funciones import *
-import CrearXML
-import EnviarBackUp
-import HacerBackUp
+
+
 import os
 
 def imprimirTview(pmatriz):
@@ -58,7 +57,7 @@ def cerrar():
     tup = auxllamarFBus(num)
     if tup[0]:
         if messagebox.askyesno("Hacer Back Up", "¿Desea hacer un Back Up de las frases antes de salir?"):
-            EnviarBackUp.Enviar()
+            Enviar()
             messagebox.showinfo("May the force be with you", "Se ha enviado un Back up a tu correo")
             raiz.destroy()
         else:
@@ -72,7 +71,7 @@ def cargarBackUp():
     if messagebox.askyesno("Cargar Back Up", "¿Desea cargar el ultimo Back Up de las frases?"):
         os.remove("books.xml")
         f = open ("books.xml","a")
-        f.write(HacerBackUp.backUp())
+        f.write(backUp())
         f.close()
     else:
         os.remove("books.xml")
@@ -84,7 +83,7 @@ def validarShare():
     num = pcan.get()
     tup = auxllamarFBus(num)
     if tup[0]:
-        EnviarBackUp.Enviar()
+        Enviar()
     else:
         messagebox.showerror('No se hará Back Up', 'No hay frases para hacer un back up')
 

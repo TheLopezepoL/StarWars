@@ -3,12 +3,20 @@
   
 
 
-  <Personaje id="Darth Vader">Darth Vader
-    <id>12</id>
-    <Frase>I sense something. A presence I have not felt since\xe2\x80\xa6. (A New Hope) - Darth Vader</Frase>
-    <cod>D001-R</cod></Personaje>
+  <Personaje id="Han Solo">Han Solo
+    <id>6</id>
+    <Frase>It\xe2\x80\x99s the ship that made the Kessel run in less than twelve parsecs. I\xe2\x80\x99ve outrun Imperial starships. Not the local bulk cruisers, mind you. I\xe2\x80\x99m talking about the big Corellian ships, now. She\xe2\x80\x99s fast enough for you, old man. \xe2\x80\x94 Han Solo</Frase>
+    <cod>H001-O</cod></Personaje>
+  <Personaje id="Rey">Rey
+    <id>48</id>
+    <Frase>The garbage\xe2\x80\x99ll do! \xe2\x80\x94 Rey</Frase>
+    <cod>R002-Y</cod></Personaje>
   <Personaje id="Darth Vader">Darth Vader
     <id>13</id>
     <Frase>This technological terror is nothing compared to the power of the force - Darth Vader</Frase>
-    <cod>D002-R</cod></Personaje>
+    <cod>D001-R</cod></Personaje>
+  <Personaje id="Count Dooku">Count Dooku
+    <id>17</id>
+    <Frase>What if I told you that the Republic was now under the control of a Dark Lord of the Sith? \xe2\x80\x94 Count Dooku</Frase>
+    <cod>C002-U</cod></Personaje>
 </FrasesStarWars>
