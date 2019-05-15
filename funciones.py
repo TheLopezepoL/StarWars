@@ -13,6 +13,11 @@ pfrases = []
 
 # Definición de Funciones
 def verificarRed():
+    """
+    Funcion: Verifica si el usuario tiene acceso a Internet
+    Entradas: N/A
+    Salidas: Booleano True/False - si cumple los requisitos
+    """
     urls = ['https://www.google.co.cr/', 'https://www.tec.ac.cr/', 'https://www.python.org/']
     resul = 0
     for url in urls:
@@ -27,6 +32,11 @@ def verificarRed():
 
 
 def sacarFrases(pcan):
+    """
+    Funcion: Crea una lista con todas las respuestas de la API las veces que el usuario solicita
+    Entradas: `pcan`(int) valor a analizar
+    Salidas: `pfrases`(list) resultado del proceso
+    """
     global pfrases
     url = 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote'
     while pcan > 0:
@@ -103,13 +113,15 @@ def crearCdA():
 
 
 def auxCrearMatriz(pcan):
+    lista = []
     global pfrases
     pfrases = sacarFrases(pcan)
     pfrases = eliminarFRep()
     pfrases = sacarNombre()
     pfrases = crearCdA()
-    frases = pfrases
-    return frases
+    for p in pfrases:
+        lista.append(p)
+    return lista
 
 
 def crearMatriz(pcan):

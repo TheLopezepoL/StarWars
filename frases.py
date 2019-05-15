@@ -37,7 +37,8 @@ def llamarFBus():
                 pdict.set(texto)
                 imprimirTview(matriz)
             else:
-                messagebox.showwarning('Numero Negativo', 'Porfavor solo digite numeros positivos (Mayor o Igual a 0)')
+                messagebox.showwarning('Numero Natural', 'Porfavor solo digite numeros enteros positivos (Mayor o Igual'
+                                                         ' a 0)')
         else:
             messagebox.showerror('Numero Invalido', 'El valor digitado no es numerico, porfavor digite solo numeros')
     else:
