@@ -13,6 +13,11 @@ import webbrowser as wb
 from funciones import *
 
 def imprimirTview(pmatriz):
+    """
+    Funcion: Imprime una cascada con todos los codigos de aplicacion y sus frases
+    Entradas: `pmatriz`(list) valor a analizar
+    Salidas: N/A
+    """
     contl = 0
     contp = 0
     tviewfra.delete(*tviewfra.get_children())
@@ -25,6 +30,11 @@ def imprimirTview(pmatriz):
     return ''
 
 def llamarFBus():
+    """
+    Funcion: Funcion que llama el boton `botbus`(tk) que se encarga de sacar e imprimir las frases
+    Entradas: N/A
+    Salidas: N/A
+    """
     global pfrases
     if verificarRed():
         num = pcan.get()
@@ -47,7 +57,12 @@ def llamarFBus():
 
 
 def abrirPDF():
-    wb.open_new(r'C:\Users\thelo\Desktop\Frases\Manual tkinter 8.5 (2013-06-24).pdf')
+    """
+    Funcion: Abre el manual de usuario cuando es presionado el boton `mdu`(tk)
+    Entradas: N/A
+    Salidas: N/A
+    """
+    wb.open_new(r'Manual de Usuario.pdf')
     return ''
 
 

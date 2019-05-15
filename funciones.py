@@ -54,6 +54,11 @@ def sacarFrases(pcan):
 
 
 def sacarNombre():
+    """
+    Funcion: Saca el nombre de la key 'starWarsQuote' del dict `pfrases` y crea una nueva key con el nombre
+    Entradas: N/A
+    Salidas: `pfrases`(list) resultado del proceso
+    """
     global pfrases
     for frase in pfrases:
         texto = frase['starWarsQuote']
@@ -73,6 +78,11 @@ def sacarNombre():
 
 
 def auxSacarNombre(ptexto):
+    """
+    Funcion: Corrige el error si crea mas de 2 elementos al hacer split
+    Entradas: `ptexto`(list) valor analizar
+    Salidas: `ptexto`(list) resultado del proceso
+    """
     f = len(ptexto) - 1
     for l in range(1, f):
         ptexto[0] = ptexto[0] + ' - ' + ptexto[l]
@@ -83,6 +93,11 @@ def auxSacarNombre(ptexto):
 
 
 def eliminarFRep():
+    """
+    Funcion: Elimina los diccionarios repetidos dentro de una lista
+    Entradas: N/A
+    Salidas: `pfrases`(list) resultado del proceso
+    """
     global pfrases
     cont = 0
     while cont < len(pfrases)-1:
@@ -98,6 +113,11 @@ def eliminarFRep():
 
 
 def crearCdA():
+    """
+    Funcion: Crea el codigo de aplicacion de cada diccionario y se lo añade con la key 'cod'
+    Entradas: N/A
+    Salidas: `pfrases`(list) resultado del proceso
+    """
     global pfrases
     ncod = len(pfrases)
     pfrases.reverse()
@@ -113,6 +133,11 @@ def crearCdA():
 
 
 def auxCrearMatriz(pcan):
+    """
+    Funcion: Reproduce una lista de funciones y se las asigna a lista (diccionario con todas las keys)
+    Entradas: `pcan`(str) valor a analizar
+    Salidas: `lista`(list) resultado del proceso
+    """
     lista = []
     global pfrases
     pfrases = sacarFrases(pcan)
@@ -125,6 +150,11 @@ def auxCrearMatriz(pcan):
 
 
 def crearMatriz(pcan):
+    """
+    Funcion: Crea una matriz a partir de `pfrases`(list) que sera utilizada para imprimir la informacion
+    Entradas: `pcan`(str) valor a analizar
+    Salidas: `matriz`(list) resultado del proceso
+    """
     global pfrases
     matriz = []
     nom = ''
@@ -154,6 +184,11 @@ def crearMatriz(pcan):
 
 
 def crearDict(pmatriz):
+    """
+    Funcion: Crea un diccionario con el codigo de la aplicacion de key y la cantidad de respuesta de la API con ese pj
+    Entradas: `pmatriz`(list) valor a analizar
+    Salidas: `diccfrases`(dict) resultado del proceso
+    """
     diccfrases = {}
     for per in pmatriz:
         cod = per[3]
@@ -162,6 +197,11 @@ def crearDict(pmatriz):
 
 
 def sacarMayor(pdict, pmatriz):
+    """
+    Funcion: Revisa el dictionario y la matriz creadas para verificar cual es el pj mas citado en la aplicacion
+    Entradas: `pdict`(dict) y `pmatriz`(list) valores a analizar
+    Salidas: str('Mas Citado + `nombre del pj mas citado en el dict`)
+    """
     nom = ''
     gcod = ''
     gnum = 0
@@ -178,6 +218,11 @@ def sacarMayor(pdict, pmatriz):
 
 
 def auxllamarFBus(pnum):
+    """
+    Funcion: Verifica si el dato ingresado es un numero entero
+    Entradas: `pnum`(str) valor a analizar
+    Salidas: {tuple} (Bool, `pnum`(int)) resultado del proceso
+    """
     try:
         pnum = int(pnum)
         return True, pnum
