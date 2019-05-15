@@ -36,7 +36,7 @@ from xml.dom import minidom
 msrvr = imaplib.IMAP4_SSL("imap.gmail.com", 993)
 base_path = os.path.dirname(os.path.realpath(__file__))
 xml_file = os.path.join(base_path,"books.xml")
-tree = et.parse(xml_file) # lo guarda en memoria
+tree = et.parse(xml_file) # lo guarda en memoria11
 root = tree.getroot()
 _xml_re = re.compile('>\n\s+([^<>\s].*?)\n\s+</', re.DOTALL)
 
@@ -126,7 +126,8 @@ def backUp():
     """""
     numero = len(m.list()[1]) # devuelve la cantidad de mensajes que hay en la bandeja
     if numero == 0:
-        return messagebox.showerror('No se ha encontrado un back up', 'Error: no hay un back up en el correo')
+        messagebox.showerror('No se ha encontrado un back up', 'Error: no hay un back up en el correo')
+        return "<FrasesStarWars title='Progra2'>\n\n</FrasesStarWars>"
     for i in range(numero): # recorreo cada linea del mensaje del correo
         response, headerLines, bytes = m.retr(i+1) # le asigna a las variables el contenido del mensaje
     i = 12 # se usa el 12 porque en la informacion, las posicion 12 corresponde unicamente al mensaje

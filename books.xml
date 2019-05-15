@@ -1,22 +1,9 @@
-<?xml version="1.0" ?>
 <FrasesStarWars title="Progra2">
   
 
 
-  <Personaje id="Han Solo">Han Solo
-    <id>6</id>
-    <Frase>It\xe2\x80\x99s the ship that made the Kessel run in less than twelve parsecs. I\xe2\x80\x99ve outrun Imperial starships. Not the local bulk cruisers, mind you. I\xe2\x80\x99m talking about the big Corellian ships, now. She\xe2\x80\x99s fast enough for you, old man. \xe2\x80\x94 Han Solo</Frase>
-    <cod>H001-O</cod></Personaje>
-  <Personaje id="Rey">Rey
-    <id>48</id>
-    <Frase>The garbage\xe2\x80\x99ll do! \xe2\x80\x94 Rey</Frase>
-    <cod>R002-Y</cod></Personaje>
-  <Personaje id="Darth Vader">Darth Vader
-    <id>13</id>
-    <Frase>This technological terror is nothing compared to the power of the force - Darth Vader</Frase>
-    <cod>D001-R</cod></Personaje>
-  <Personaje id="Count Dooku">Count Dooku
-    <id>17</id>
-    <Frase>What if I told you that the Republic was now under the control of a Dark Lord of the Sith? \xe2\x80\x94 Count Dooku</Frase>
-    <cod>C002-U</cod></Personaje>
-</FrasesStarWars>
+  <Personaje id="Qui-Gon Jinn">Qui-Gon Jinn
+    <id>41</id>
+    <Frase>There\xe2\x80\x99s always a bigger fish. \xe2\x80\x94 Qui-Gon Jinn</Frase>
+    <cod>Q001-N</cod></Personaje>
+<Personaje id="Duchess Satine Kryze">Duchess Satine Kryze<id>54</id><Frase>Remember, my dear Obi-Wan. I&#8217;ve loved you always. I always will. &#8212; Duchess Satine Kryze</Frase><cod>D001-E</cod></Personaje></FrasesStarWars>

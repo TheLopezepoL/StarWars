@@ -90,6 +90,7 @@ def validarShare():
 
 
 
+
 # Programa Principal
 # # # raiz
 raiz = Tk()
