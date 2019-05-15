@@ -47,6 +47,7 @@ def llamarFBus():
 
 def abrirPDF():
     wb.open_new(r'C:\Users\thelo\Desktop\Frases\Manual tkinter 8.5 (2013-06-24).pdf')
+    return ''
 
 
 # Programa Principal
@@ -64,7 +65,7 @@ prfrases = StringVar()
 pdict = StringVar()
 # fondo
 imagen = PhotoImage(file='fondo.png')
-fondo = Label(raiz, image=imagen).place(x=-11, y=-8)
+fondo = Label(raiz, image=imagen).place(x=-110, y=-80)
 #
 # # # texto buscar
 texbus = Entry(fondo, bg='yellow', textvariable=pcan)
