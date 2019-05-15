@@ -28,6 +28,7 @@ def imprimirTview(pmatriz):
         contl += 1
     return ''
 
+
 def llamarFBus():
     global pfrases
     if verificarRed():
@@ -85,7 +86,7 @@ def validarShare():
     if tup[0]:
         EnviarBackUp.Enviar()
     else:
-        messagebox.showerror('No se compartirá', 'No hay frases para sharear')
+        messagebox.showerror('No se hará Back Up', 'No hay frases para hacer un back up')
 
 
 

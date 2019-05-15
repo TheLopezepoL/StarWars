@@ -1,3 +1,14 @@
-<FrasesStarWars title='Progra2'>
+<?xml version="1.0" ?>
+<FrasesStarWars title="Progra2">
+  
 
+
+  <Personaje id="Darth Vader">Darth Vader
+    <id>12</id>
+    <Frase>I sense something. A presence I have not felt since\xe2\x80\xa6. (A New Hope) - Darth Vader</Frase>
+    <cod>D001-R</cod></Personaje>
+  <Personaje id="Darth Vader">Darth Vader
+    <id>13</id>
+    <Frase>This technological terror is nothing compared to the power of the force - Darth Vader</Frase>
+    <cod>D002-R</cod></Personaje>
 </FrasesStarWars>

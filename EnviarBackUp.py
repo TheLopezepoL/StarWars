@@ -16,7 +16,11 @@ root = tree.getroot()
 _xml_re = re.compile('>\n\s+([^<>\s].*?)\n\s+</', re.DOTALL)
 
 def mejorarXML(xml, indent="  "):
-
+    """""
+            Entrada: el xml, una identeacion corta
+            salida: el xml arreglado
+            restriccion: si el xml ya esta arreglado no madna de una vez
+        """""
     xml_re = _xml_re
     # avoid re-prettifying large amounts of xml that is fine
     if xml.count("\n") < 20:
@@ -26,10 +30,13 @@ def mejorarXML(xml, indent="  "):
         return xml
 
 def Enviar():
-    #f = open('books.xml', 'r')
-    #file_contents = f.read()
+    """""
+        Entrada: ninguna
+        salida: el correo enviado
+        restriccion: ninguna
+    """""
     enviarCorreo("Back up2", mejorarXML(open("books.xml","r").read()))
-    #f.close()
+
 
 def enviarCorreo(asunto,mensaje):
     origen = "proyectopythondanseb@gmail.com"

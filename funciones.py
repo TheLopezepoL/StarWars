@@ -10,6 +10,16 @@ import json
 from tkinter import *
 import CrearXML
 import EnviarBackUp
+
+import os
+import xml.etree.ElementTree as et
+
+
+base_path = os.path.dirname(os.path.realpath(__file__))
+xml_file = os.path.join(base_path, "books.xml")
+tree = et.parse(xml_file) # lo guarda en memoria
+root = tree.getroot()
+
 # Variable Global
 pfrases = []
 
@@ -42,6 +52,7 @@ def sacarFrases(pcan):
         else:
             pfrases.append({'id': 0, 'starWarsQuote': 'Error de conexion; la API no respondio - ERROR', 'faction': 0})
         pcan -= 1
+    print(pfrases)
     return pfrases
 
 
@@ -130,9 +141,11 @@ def crearMatriz(pcan):
                 frases.pop(cont2)
                 cont2 -= 1
             cont2 += 1
+        print("nom:", nom, "lfra: ", lfra, "lid: ", lid, "CdA:", CdA)
         lis = [nom, lfra, lid, CdA]
         matriz.append(lis)
     return matriz
+
 
 
 def crearDict(pmatriz):
