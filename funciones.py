@@ -8,10 +8,146 @@
 import requests
 import json
 from tkinter import *
+
+
+import os
+import xml.etree.ElementTree as et
+
+import imaplib, email, os
+import poplib
+from tkinter import messagebox
+
+
+import smtplib
+import imaplib
+import os
+import xml.etree.ElementTree as et
+import re
+from xml.dom.minidom import parseString
+from xml.dom import minidom
+
+import smtplib
+import imaplib
+import os
+import xml.etree.ElementTree as et
+from xml.dom import minidom
+
+
+msrvr = imaplib.IMAP4_SSL("imap.gmail.com", 993)
+base_path = os.path.dirname(os.path.realpath(__file__))
+xml_file = os.path.join(base_path,"books.xml")
+tree = et.parse(xml_file) # lo guarda en memoria11
+root = tree.getroot()
+_xml_re = re.compile('>\n\s+([^<>\s].*?)\n\s+</', re.DOTALL)
+
+
+base_path = os.path.dirname(os.path.realpath(__file__))
+xml_file = os.path.join(base_path, "books.xml")
+tree = et.parse(xml_file) # lo guarda en memoria
+root = tree.getroot()
+
 # Variable Global
 pfrases = []
 
 # Definición de Funciones
+
+def crearFrase(id,frase,nom,cod):
+    msrvr = imaplib.IMAP4_SSL("imap.gmail.com", 993)
+    base_path = os.path.dirname(os.path.realpath(__file__))
+    xml_file = os.path.join(base_path, "books.xml")
+    tree = et.parse(xml_file)  # lo guarda en memoria
+    root = tree.getroot()
+
+    nuevoPersonaje = et.SubElement(root, "Personaje", attrib={"id": nom})
+    nuevoID = et.SubElement(nuevoPersonaje,"id")
+    nuevaFrase = et.SubElement(nuevoPersonaje, "Frase")
+    nuevoCod = et.SubElement(nuevoPersonaje, "cod")
+
+    nuevoPersonaje.text = nom
+    nuevoCod.text = cod
+    nuevoID.text = id
+    nuevaFrase.text = frase
+
+    tree.write(xml_file)
+
+
+
+def mejorarXML(xml, indent="  "):
+    """""
+            Entrada: el xml, una identeacion corta
+            salida: el xml arreglado
+            restriccion: si el xml ya esta arreglado no madna de una vez
+        """""
+    xml_re = _xml_re
+    # avoid re-prettifying large amounts of xml that is fine
+    if xml.count("\n") < 20:
+        pxml = parseString(xml).toprettyxml(indent)
+        return xml_re.sub('>\g<1></', pxml)
+    else:
+        return xml
+
+def Enviar():
+    """""
+        Entrada: ninguna
+        salida: el correo enviado
+        restriccion: ninguna
+    """""
+    enviarCorreo("Back up2", mejorarXML(open("books.xml","r").read()))
+
+
+def enviarCorreo(asunto,mensaje):
+    origen = "proyectopythondanseb@gmail.com"
+    password = "softskills01"
+    destinario = origen
+    mensaje = "Subject: {}\n\n{}".format(asunto,mensaje)
+    print("origen: "+origen)
+    print("contra: "+password)
+    print("destinaripo:" + destinario)
+    print("mensaje: "+mensaje)
+    print("asunto:" + asunto)
+    server = smtplib.SMTP("smtp.gmail.com",587)
+    server.starttls()
+    server.login(origen,password)
+    server.sendmail(origen,origen,mensaje)
+    server.quit()
+    return "Se ha enviado un back up a tu correo"
+
+
+
+
+def backUp():
+    m = poplib.POP3_SSL('pop.gmail.com', 995)  # se conecta al server
+    m.user('proyectopythondanseb@gmail.com')  # inicia con correo
+    m.pass_('softskills01')  # inicia con la password
+    """""
+    Entrada: ninguna
+    salida: xmlNuevo2 con el mensaje del correo
+    restriccion: debe haber un back up
+    """""
+    numero = len(m.list()[1]) # devuelve la cantidad de mensajes que hay en la bandeja
+    if numero == 0:
+        messagebox.showerror('No se ha encontrado un back up', 'Error: no hay un back up en el correo')
+        return "<FrasesStarWars title='Progra2'>\n\n</FrasesStarWars>"
+    for i in range(numero): # recorreo cada linea del mensaje del correo
+        response, headerLines, bytes = m.retr(i+1) # le asigna a las variables el contenido del mensaje
+    i = 12 # se usa el 12 porque en la informacion, las posicion 12 corresponde unicamente al mensaje
+    xmlNuevo= "" # crea un string vacio
+    while True: # ciclo semi infinito
+        # print("\nPosicion:",i,headerLines[i])
+        try:
+            s = str(headerLines[i]) # instancia la s como el contenido tomado previamente en la parte del inicio del mensaje
+            print("Cada i: ",headerLines[i]) # impresion de informacion para super usuario
+            xmlNuevo = xmlNuevo + s.replace("b'","")+"\n" # limpia los bytes del correo
+            i= i+1 # se mueve a la siguiente linea del correo
+        except: # cuando no hay mas lineas se sale del index
+            break # cuando no hay mas lineas se sale del ciclo
+    xmlNuevo2 = "" # crea un nuevo string
+    s = str(xmlNuevo) # instancia la s como el string del xml creado
+    xmlNuevo2 = s.replace("'","") # a xml2 le quita los bytes sobrantes
+    # print(xmlNuevo2)
+    # print("ce fini")
+    return xmlNuevo2 # retorna el xml convertido de byte a string
+
 def verificarRed():
     """
     Funcion: Verifica si el usuario tiene acceso a Internet

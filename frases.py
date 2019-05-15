@@ -12,12 +12,10 @@ from tkinter import messagebox
 import webbrowser as wb
 from funciones import *
 
+
+import os
+
 def imprimirTview(pmatriz):
-    """
-    Funcion: Imprime una cascada con todos los codigos de aplicacion y sus frases
-    Entradas: `pmatriz`(list) valor a analizar
-    Salidas: N/A
-    """
     contl = 0
     contp = 0
     tviewfra.delete(*tviewfra.get_children())
@@ -29,12 +27,8 @@ def imprimirTview(pmatriz):
         contl += 1
     return ''
 
+
 def llamarFBus():
-    """
-    Funcion: Funcion que llama el boton `botbus`(tk) que se encarga de sacar e imprimir las frases
-    Entradas: N/A
-    Salidas: N/A
-    """
     global pfrases
     if verificarRed():
         num = pcan.get()
@@ -47,8 +41,7 @@ def llamarFBus():
                 pdict.set(texto)
                 imprimirTview(matriz)
             else:
-                messagebox.showwarning('Numero Natural', 'Porfavor solo digite numeros enteros positivos (Mayor o Igual'
-                                                         ' a 0)')
+                messagebox.showwarning('Numero Negativo', 'Porfavor solo digite numeros positivos (Mayor o Igual a 0)')
         else:
             messagebox.showerror('Numero Invalido', 'El valor digitado no es numerico, porfavor digite solo numeros')
     else:
@@ -57,18 +50,53 @@ def llamarFBus():
 
 
 def abrirPDF():
-    """
-    Funcion: Abre el manual de usuario cuando es presionado el boton `mdu`(tk)
-    Entradas: N/A
-    Salidas: N/A
-    """
     wb.open_new(r'Manual de Usuario.pdf')
-    return ''
+
+def cerrar():
+    num = pcan.get()
+    tup = auxllamarFBus(num)
+    if tup[0]:
+        if messagebox.askyesno("Hacer Back Up", "¿Desea hacer un Back Up de las frases antes de salir?"):
+            Enviar()
+            messagebox.showinfo("May the force be with you", "Se ha enviado un Back up a tu correo")
+            raiz.destroy()
+        else:
+            raiz.destroy()
+    else:
+        messagebox.showerror('No se hará Back Up', 'No hay frases para hacer un back up')
+        raiz.destroy()
+
+
+def cargarBackUp():
+    if messagebox.askyesno("Cargar Back Up", "¿Desea cargar el ultimo Back Up de las frases?"):
+        os.remove("books.xml")
+        f = open ("books.xml","a")
+        f.write(backUp())
+        f.close()
+    else:
+        os.remove("books.xml")
+        f = open("books.xml", "a")
+        f.write("<FrasesStarWars title='Progra2'>\n\n</FrasesStarWars>")
+        f.close()
+
+def validarShare():
+    num = pcan.get()
+    tup = auxllamarFBus(num)
+    if tup[0]:
+        Enviar()
+    else:
+        messagebox.showerror('No se hará Back Up', 'No hay frases para hacer un back up')
+
+
+
 
 
 # Programa Principal
 # # # raiz
 raiz = Tk()
+cargarBackUp()
+raiz.protocol("WM_DELETE_WINDOW", cerrar)
+#raiz.wm_attributes('-fullscreen','true')
 style = ttk.Style()
 style.theme_use('clam')
 raiz.title("Frases de Star Wars")
@@ -81,7 +109,7 @@ prfrases = StringVar()
 pdict = StringVar()
 # fondo
 imagen = PhotoImage(file='fondo.png')
-fondo = Label(raiz, image=imagen).place(x=-110, y=-80)
+fondo = Label(raiz, image=imagen).place(x=-11, y=-8)
 #
 # # # texto buscar
 texbus = Entry(fondo, bg='yellow', textvariable=pcan)
@@ -92,7 +120,7 @@ botbus = Button(fondo, text='Buscar', bg='yellow', fg='Black', font="Fixedsys", 
 botbus.place(x=610, y=98)
 botbus.config(width="15", height="2", bd=10, relief='ridge', cursor='hand2')
 # # # boton enviar xml
-botenv = Button(fondo, text='Enviar XML', bg='yellow', fg='Black', font='Fixedsys')
+botenv = Button(fondo, text='Share', bg='yellow', fg='Black', font='Fixedsys', command=validarShare)
 botenv.place(x=497, y=188)
 botenv.config(width='29', height='2', bd=10, relief='ridge', cursor="hand2")
 ###
