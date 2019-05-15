@@ -52,6 +52,7 @@ def llamarFBus():
 def abrirPDF():
     wb.open_new(r'Manual de Usuario.pdf')
 
+
 def cerrar():
     num = pcan.get()
     tup = auxllamarFBus(num)
