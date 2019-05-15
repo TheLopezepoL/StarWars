@@ -8,6 +8,8 @@
 import requests
 import json
 from tkinter import *
+import CrearXML
+import EnviarBackUp
 # Variable Global
 pfrases = []
 
@@ -101,6 +103,7 @@ def crearCdA():
     return pfrases
 
 
+
 def crearMatriz(pcan):
     global pfrases
     matriz = []
@@ -123,6 +126,7 @@ def crearMatriz(pcan):
             if i['nom'] == nom:
                 lfra.append(i['starWarsQuote'])
                 lid.append(i['id'])
+                CrearXML.crearFrase(str(i["id"]),i['starWarsQuote'],i["nom"],i["cod"])
                 frases.pop(cont2)
                 cont2 -= 1
             cont2 += 1

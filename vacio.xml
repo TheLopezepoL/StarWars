@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<FrasesStarWars title="Progra2">
+  
+
+
+  <Personaje id="Obi-Wan Kenobi">Obi-Wan Kenobi
+    <id>26</id>
+    <Frase>If you define yourself by your power to take life, your desire to dominate, to possess, then you have nothing. \xe2\x80\x94 Obi-Wan Kenobi</Frase>
+    <cod>O001-I</cod></Personaje>
+  <Personaje id="Rey">Rey
+    <id>48</id>
+    <Frase>The garbage\xe2\x80\x99ll do! \xe2\x80\x94 Rey</Frase>
+    <cod>R001-Y</cod></Personaje>
+  <Personaje id="Maul">Maul
+    <id>15</id>
+    <Frase>The Sith took everything from me. Ripped me from my mother\xe2\x80\x99s arms, murdered my brother, used me as a weapon, and then cast me aside. Abandoned me. Once, I had power \xe2\x80\x94 now I have nothing. \xe2\x80\x94 Maul</Frase>
+    <cod>M001-L</cod></Personaje>
+</FrasesStarWars>
+<?xml version="1.0" ?>
+<FrasesStarWars title="Progra2">
+  
+
+
+  <Personaje id="Obi-Wan Kenobi">Obi-Wan Kenobi
+    <id>26</id>
+    <Frase>If you define yourself by your power to take life, your desire to dominate, to possess, then you have nothing. \xe2\x80\x94 Obi-Wan Kenobi</Frase>
+    <cod>O001-I</cod></Personaje>
+  <Personaje id="Rey">Rey
+    <id>48</id>
+    <Frase>The garbage\xe2\x80\x99ll do! \xe2\x80\x94 Rey</Frase>
+    <cod>R001-Y</cod></Personaje>
+  <Personaje id="Maul">Maul
+    <id>15</id>
+    <Frase>The Sith took everything from me. Ripped me from my mother\xe2\x80\x99s arms, murdered my brother, used me as a weapon, and then cast me aside. Abandoned me. Once, I had power \xe2\x80\x94 now I have nothing. \xe2\x80\x94 Maul</Frase>
+    <cod>M001-L</cod></Personaje>
+</FrasesStarWars>
+<?xml version="1.0" ?>
+<FrasesStarWars title="Progra2">
+  
+
+
+  <Personaje id="Obi-Wan Kenobi">Obi-Wan Kenobi
+    <id>26</id>
+    <Frase>If you define yourself by your power to take life, your desire to dominate, to possess, then you have nothing. \xe2\x80\x94 Obi-Wan Kenobi</Frase>
+    <cod>O001-I</cod></Personaje>
+  <Personaje id="Rey">Rey
+    <id>48</id>
+    <Frase>The garbage\xe2\x80\x99ll do! \xe2\x80\x94 Rey</Frase>
+    <cod>R001-Y</cod></Personaje>
+  <Personaje id="Maul">Maul
+    <id>15</id>
+    <Frase>The Sith took everything from me. Ripped me from my mother\xe2\x80\x99s arms, murdered my brother, used me as a weapon, and then cast me aside. Abandoned me. Once, I had power \xe2\x80\x94 now I have nothing. \xe2\x80\x94 Maul</Frase>
+    <cod>M001-L</cod></Personaje>
+</FrasesStarWars>
