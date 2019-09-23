@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0544318-adda-4155-9827-914d2c0f1935" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manual de Usuario.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Manual de Usuario.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books.xml" beforeDir="false" afterPath="$PROJECT_DIR$/books.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentacion_frases.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentacion_frases.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/documentacion_frases.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/funciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/funciones.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/funciones.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="129" column="63" selection-start-line="129" selection-start-column="63" selection-end-line="129" selection-end-column="63" />
+            <state relative-caret-position="4454">
+              <caret line="287" selection-start-line="287" selection-end-line="287" />
               <folding>
                 <element signature="e#278#293#0" expanded="true" />
               </folding>
@@ -27,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frases.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="44" column="13" lean-forward="true" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+            <state relative-caret-position="635">
+              <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
               <folding>
                 <element signature="e#278#299#0" expanded="true" />
               </folding>
@@ -39,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/books.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -48,7 +53,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/xml/etree/ElementTree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
+            <state relative-caret-position="10013">
               <caret line="597" selection-start-line="597" selection-end-line="597" />
             </state>
           </provider>
@@ -111,16 +116,16 @@
         <option value="$PROJECT_DIR$/EnviarBackUp.py" />
         <option value="$PROJECT_DIR$/HacerBackUp.py" />
         <option value="$PROJECT_DIR$/CrearXML.py" />
+        <option value="$PROJECT_DIR$/books.xml" />
         <option value="$PROJECT_DIR$/frases.py" />
         <option value="$PROJECT_DIR$/funciones.py" />
-        <option value="$PROJECT_DIR$/books.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-409" />
+    <option name="x" value="-410" />
     <option name="width" value="1140" />
-    <option name="height" value="1054" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -286,6 +291,9 @@
       <workItem from="1556650897423" duration="3607000" />
       <workItem from="1556735390323" duration="3758000" />
       <workItem from="1556835507483" duration="12998000" />
+      <workItem from="1557948014148" duration="121000" />
+      <workItem from="1557966023313" duration="29000" />
+      <workItem from="1558295035184" duration="598000" />
     </task>
     <task id="LOCAL-00001" summary="verificarRed">
       <created>1556653111783</created>
@@ -298,10 +306,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21161000" />
+    <option name="totallyTimeSpent" value="21909000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1217" height="766" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.3384224" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -380,9 +388,7 @@
     <entry file="file://$PROJECT_DIR$/f.py" />
     <entry file="file://$PROJECT_DIR$/leercorreo.py" />
     <entry file="file://$PROJECT_DIR$/enviarcorreo.py" />
-    <entry file="file://F:/U/introTaller/boton2.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://F:/U/introTaller/boton2.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/smtplib.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -394,44 +400,35 @@
     <entry file="file://$PROJECT_DIR$/EnviarBackUp.py" />
     <entry file="file://$PROJECT_DIR$/xmlprueba.py" />
     <entry file="file://$PROJECT_DIR$/CrearXML.py" />
-    <entry file="file://F:/tkinter2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/xml/etree/ElementTree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="597" selection-start-line="597" selection-end-line="597" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/books.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://F:/tkinter2.py" />
     <entry file="file://$PROJECT_DIR$/funciones.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="129" column="63" selection-start-line="129" selection-start-column="63" selection-end-line="129" selection-end-column="63" />
+        <state relative-caret-position="4454">
+          <caret line="287" selection-start-line="287" selection-end-line="287" />
           <folding>
             <element signature="e#278#293#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/books.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/xml/etree/ElementTree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10013">
+          <caret line="597" selection-start-line="597" selection-end-line="597" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frases.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="44" column="13" lean-forward="true" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+        <state relative-caret-position="635">
+          <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
           <folding>
             <element signature="e#278#299#0" expanded="true" />
           </folding>

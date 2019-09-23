@@ -297,10 +297,7 @@ def crearMatriz(pcan):
     matriz = []
     nom = ''
     cont = 0
-    frases = sacarFrases(pcan)
-    frases = eliminarFRep()
-    frases = sacarNombre()
-    frases = crearCdA()
+    frases = auxCrearMatriz(pcan)
     while len(frases) != 0:
         f = frases[cont]
         CdA = f['cod']
@@ -358,19 +355,6 @@ def sacarMayor(pdict, pmatriz):
             return 'Más Citado: ' + nom
     return 'Más Citado: ' + nom
 
-"""
-def imprimirTview(pmatriz):
-    contl = 0
-    contp = 0
-    tviewfra.delete(*tviewfra.get_children())
-    for l in pmatriz:
-        tviewfra.insert('', str(contl), 'C'+str(contl), text=l[3])
-        for p in l[1]:
-            tviewfra.insert('C'+str(contl), str(contp), 'F'+str(contp), text=p)
-            contp += 1
-        contl += 1
-    return ''
-"""
 
 
 def auxllamarFBus(pnum):
@@ -385,28 +369,6 @@ def auxllamarFBus(pnum):
     except ValueError:
         return False, pnum
 
-"""
-def llamarFBus():
-    global pfrases
-    print(pfrases)
-    if verificarRed():
-        num = pcan.get()
-        tup = auxllamarFBus(num)
-        if tup[0]:
-            if tup[1] >= 0:
-                matriz = crearMatriz(tup[1])
-                dicc = crearDict(matriz)
-                texto = sacarMayor(dicc, matriz)
-                pdict.set(texto)
-                imprimirTview(matriz)
-            else:
-                messagebox.showwarning('Numero Negativo', 'Porfavor solo digite numeros positivos (Mayor o Igual a 0)')
-        else:
-            messagebox.showerror('Numero Invalido', 'El valor digitado no es numerico, porfavor digite solo numeros')
-    else:
-        messagebox.showwarning('Sin Conexion', 'No hay conexion a Internet, revise e intente de nuevo')
-    return ''
-"""
 
 
 # - FIN - #

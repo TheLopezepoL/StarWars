@@ -89,9 +89,6 @@ def validarShare():
         messagebox.showerror('No se hará Back Up', 'No hay frases para hacer un back up')
 
 
-
-
-
 # Programa Principal
 # # # raiz
 raiz = Tk()
